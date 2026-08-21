@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: shopify-plus
+  data:
+    mongodb:
+      # Own database — separate from the Node project's "shopify-plus" to avoid index clashes.
+      uri: ${MONGO_URI:mongodb://localhost:27017/shopify-plus-java}
+      auto-index-creation: true
+
+server:
+  port: 5000
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
+app:
+  jwt:
+    secret: ${JWT_SECRET:change_me_change_me_change_me_change_me_32bytes_min}
+    # Access token short-lived; clients rotate it via /api/auth/refresh.
+    expiration-ms: ${JWT_EXPIRATION_MS:900000}
+    refresh-expiration-ms: ${JWT_REFRESH_EXPIRATION_MS:604800000}
+  stripe:
+    mock: ${STRIPE_MOCK:true}
+    secret-key: ${STRIPE_SECRET_KEY:sk_test_dummy}
+    webhook-secret: ${STRIPE_WEBHOOK_SECRET:whsec_test}
+  ratelimit:
+    enabled: ${RATELIMIT_ENABLED:true}
+    limit: 100
+    window-ms: 900000
+  checkout:
+    reservation-minutes: 15
+    release-scan-ms: 60000

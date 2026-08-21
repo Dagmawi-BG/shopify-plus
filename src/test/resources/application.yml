@@ -1,0 +1,21 @@
+# Test profile — isolated DB on the real local MongoDB (like shopify-plus-test in Node).
+spring:
+  data:
+    mongodb:
+      uri: mongodb://127.0.0.1:27017/shopify-plus-java-test
+      auto-index-creation: true
+
+app:
+  jwt:
+    secret: test_secret_test_secret_test_secret_32bytes_minimum_ok
+    expiration-ms: 3600000
+    refresh-expiration-ms: 604800000
+  stripe:
+    mock: true
+    secret-key: sk_test_dummy
+    webhook-secret: whsec_test
+  ratelimit:
+    enabled: false
+  checkout:
+    reservation-minutes: 15
+    release-scan-ms: 3600000
