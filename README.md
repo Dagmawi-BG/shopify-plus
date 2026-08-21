@@ -12,7 +12,7 @@ A test-driven, backend-only e-commerce REST API on a document database. Own JWT 
 - **Checkout & orders** — single-transaction ordering with a **stock-reservation** model (hold on checkout, auto-release on expiry via a scheduler), **idempotency key** support, and partial-line selection.
 - **Payments** — Stripe (create-intent + webhook) with a **mock mode** for local dev.
 - **Auth** — register / login / **refresh tokens**, **rate limiting**, and role-based access (`USER` / `ADMIN`).
-- **Money** — `BigDecimal` throughout; the server is the single source of truth for every amount.
+- **Money** — amounts kept to 2 decimals via a `Money` rounding helper; the server is the single source of truth for every amount (the client can never dictate a price or discount).
 
 ## Architecture highlights
 
